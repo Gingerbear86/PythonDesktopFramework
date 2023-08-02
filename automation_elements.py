@@ -13,7 +13,6 @@ class AutomationElements:
     and the locator itself.
     """
 
-    # Web locators
     web_cookies_accept_locator = (
         By.XPATH,
         "//span[@class='block' and text()='Accept']"

@@ -8,13 +8,13 @@ import os
 import configparser
 import logging
 import openpyxl
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import ElementClickInterceptedException
-from selenium.webdriver.edge.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.edge.service import Service
+from selenium.common.exceptions import ElementClickInterceptedException
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium import webdriver
 from combined_automation_methods import CombinedAutomationMethods
 
 # Configure logging
@@ -41,22 +41,6 @@ class DesktopAutomationMethods(CombinedAutomationMethods):
             'Selenium',
             'edge_binary_path'
         )
-        # window_x_position = config_handler.getint(
-        #    'Selenium',
-        #    'window_position_x'
-        # )
-        # window_y_position = config_handler.getint(
-        #    'Selenium',
-        #    'window_position_y'
-        # )
-        # window_width = config_handler.getint(
-        #    'Selenium',
-        #    'window_width'
-        # )
-        # window_height = config_handler.getint(
-        #    'Selenium',
-        #    'window_height'
-        # )
         wait_timeout = config_handler.getint(
             'Selenium',
             'wait_timeout'

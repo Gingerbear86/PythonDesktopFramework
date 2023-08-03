@@ -2,81 +2,93 @@
 This is the test that will navigate to the table
 and capture the data on the table and save it to a file
 """
+import unittest
 from automation_elements import AutomationElements
-from desktop_automation_methods import DesktopAutomationMethods
+from desktop_automation_methods import WebElementHandler
+from desktop_automation_methods import ExcelHandler
 
-# Instantiating the methods and elements being imported
-# Webdriver and Table File also
-automation_methods = DesktopAutomationMethods()
-automation_elements = AutomationElements()
-automation_methods.file_path = "table_data.xlsx"
-driver = automation_methods.driver
 
-# Informs the Agent which variable to use in the Pipeline Job
-# for Azure test runs
-# github_token = os.environ.get('GITHUB_TOKEN')
+class TestingQuasarDesktopTable(unittest.TestCase):
+    """_summary_
 
-# Open an inprivate Edge browser and navigate to quasar.dev
-driver.get('https://quasar.dev/')
+    Args:
+        unittest (_type_): _description_
+    """
+    @classmethod
+    def setUpClass(cls):
+        cls.automation_methods = WebElementHandler()
+        cls.automation_elements = AutomationElements()
+        cls.automation_excel_handler = ExcelHandler()
+        cls.driver = cls.automation_methods.driver
 
-# Locates and clicks Accept on the Cookies Pop-Up
-web_cookies = automation_methods.find_element(
-    self.automation_elements.web_cookies_accept_locator
-)
-web_cookies.click()
+    def setUp(self):
+        self.file_path = "table_data.xlsx"
+        self.driver.get('https://quasar.dev/')
 
-# Locates and clicks the DOCS button at the top of the page
-web_docs = automation_methods.find_element(
-    automation_elements.web_docs_locator
-)
-web_docs.click()
+        # Locates and clicks Accept on the Cookies Pop-Up
+        web_cookies = self.automation_methods.find_element(
+            self.automation_elements.web_cookies_accept_locator
+        )
+        web_cookies.click()
 
-# Locates and clicks the Vue Components item
-# from the list on the left of the page
-web_vc = automation_methods.find_element(
-    automation_elements.web_vue_components_locator
-)
-web_vc.click()
+        # Locates and clicks the DOCS button at the top of the page
+        web_docs = self.automation_methods.find_element(
+            self.automation_elements.web_docs_locator
+        )
+        web_docs.click()
 
-# Locates and clicks the Table option in the Vue Components dropdown
-web_table = automation_methods.find_element(
-    automation_elements.web_vc_table_locator
-)
-web_table.click()
+        # Locates and clicks the Vue Components item
+        web_vc = self.automation_methods.find_element(
+            self.automation_elements.web_vue_components_locator
+        )
+        web_vc.click()
 
-# Locates and clicks the Basic usage option in the Table page list
-web_table_r7 = automation_methods.find_element(
-    automation_elements.web_table_right7_locator
-)
-web_table_r7.click()
-web_table_r7.click()
+        # Locates and clicks the Table option in the Vue Components dropdown
+        web_table = self.automation_methods.find_element(
+            self.automation_elements.web_vc_table_locator
+        )
+        web_table.click()
 
-# Open the Basic usage Table dropdown
-web_table_dropdown = automation_methods.find_element(
-    automation_elements.web_table_basic_usage_dropdown_button_locator
-)
-driver.execute_script("arguments[0].click();", web_table_dropdown)
+        # Locates and clicks the Basic usage option in the Table page list
+        web_table_r7 = self.automation_methods.find_element(
+            self.automation_elements.web_table_right7_locator
+        )
+        web_table_r7.click()
+        web_table_r7.click()
 
-# Click the option with value "10"
-web_table_dropdown_10 = automation_methods.find_element(
-    automation_elements.web_table_basic_usage_dropdown_option_10_locator
-)
-web_table_dropdown_10.click()
+        # Open the Basic usage Table dropdown
+        web_table_dropdown = self.automation_methods.find_element(
+            self.automation_elements.web_table_basic_usage_dropdown_button_locator
+        )
+        self.automation_methods.driver.execute_script("arguments[0].click();", web_table_dropdown)
 
-# Save the table data from the Basicusage Table to an XLSX file
-WEB_TABLE_SAVE = automation_methods.record_table_data(
-    automation_elements.web_table_basic_usage_child_tables_locator,
-    automation_methods.file_path
-)
+        # Click the option with value "10"
+        web_table_dropdown_10 = self.automation_methods.find_element(
+            self.automation_elements.web_table_basic_usage_dropdown_option_10_locator
+        )
+        web_table_dropdown_10.click()
 
-# Display a larger popup alert with "All Done" message
-driver.execute_script(
-    "alert('All Done'); "
-    "document.querySelector('style').textContent = 'body { zoom: 5; }';"
-)
+    def test_1_table_save(self):
+        """_summary_
+        """
+        # Save the table data from the Basicusage Table to an XLSX file
+        self.automation_excel_handler.record_table_data(
+            self.automation_elements.web_table_basic_usage_child_tables_locator,
+            self.file_path
+        )
 
-# Close the popup
-driver.switch_to.alert.accept()
+    def tearDown(self):
+        """_summary_
+        """
+        # Display a large popup alert with "All Done" message
+        self.automation_methods.driver.execute_script(
+            "alert('All Done'); "
+            "document.querySelector('style').textContent"
+            "= 'body { zoom: 5; }';"
+        )
+        self.automation_methods.driver.switch_to.alert.accept()
+        self.automation_methods.driver.quit()
 
-# Quit WebDriver
-driver.quit()
+
+if __name__ == '__main__':
+    unittest.main()

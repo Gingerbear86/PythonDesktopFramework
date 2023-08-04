@@ -13,7 +13,6 @@ class AutomationElements:
     and the locator itself.
     """
 
-    # Web locators
     web_cookies_accept_locator = (
         By.XPATH,
         "//span[@class='block' and text()='Accept']"
@@ -126,15 +125,3 @@ class AutomationElements:
         "//*[@id='q-app']/div/div[1]/main/div[1]/div[2]/div[18]"
         "/div[3]/div/div/div[4]/div/div[4]/div[2]/div"
     )
-
-    # Mobile locators
-
-    mobile_more_button_xpath = (
-        "//android.widget.Button[@text='More']"
-    )
-
-    mobile_docs_button_xpath = (
-        "//android.widget.TextView[@text='Docs']"
-    )
-
-    # Add other mobile locators here...

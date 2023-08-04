@@ -3,7 +3,6 @@ This module contains the code for housing my methods
 that are used in my automated desktop testing.
 """
 
-# Various imports used for desktop testing.
 import os
 import configparser
 import logging
@@ -17,7 +16,6 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from combined_automation_methods import CombinedAutomationMethods
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 
 
@@ -31,7 +29,6 @@ class DesktopAutomationMethods(CombinedAutomationMethods):
         self.wait = None
         self.file_path = None
 
-        # Use the data from the Config File
         config_handler = ConfigHandler()
         edge_driver_path = config_handler.get(
             'Selenium',
@@ -41,23 +38,35 @@ class DesktopAutomationMethods(CombinedAutomationMethods):
             'Selenium',
             'edge_binary_path'
         )
+<<<<<<< HEAD
+=======
+        window_x_position = config_handler.getint(
+           'Selenium',
+           'window_position_x'
+        )
+        window_y_position = config_handler.getint(
+           'Selenium',
+           'window_position_y'
+        )
+        window_width = config_handler.getint(
+           'Selenium',
+           'window_width'
+        )
+        window_height = config_handler.getint(
+           'Selenium',
+           'window_height'
+        )
+>>>>>>> 33c18f71abc1418b29bd91596def5f5dff5747b2
         wait_timeout = config_handler.getint(
             'Selenium',
             'wait_timeout'
         )
 
-        # Initialize the options for the Edge driver
         edge_options = webdriver.EdgeOptions()
         edge_options.add_argument("--log-level=3")
-
-        # Specify the location of the Edge browser binary
         edge_options.binary_location = edge_binary_path
-
-        # Add command line argument to start Edge in InPrivate mode
         edge_options.add_argument('--inprivate')
 
-        # Create a new instance of the Edge driver
-        # and set the position and size of the window
         self.driver = webdriver.Edge(
             service=Service(
                 executable_path=edge_driver_path, service_args=[
@@ -66,11 +75,10 @@ class DesktopAutomationMethods(CombinedAutomationMethods):
                 ),
             options=edge_options
         )
-        # self.driver.set_window_position(window_x_position, window_y_position)
-        # self.driver.set_window_size(window_width, window_height)
+        self.driver.set_window_position(window_x_position, window_y_position)
+        self.driver.set_window_size(window_width, window_height)
         self.driver.maximize_window()
 
-        # Set the driver wait properties
         self.wait = WebDriverWait(self.driver, wait_timeout)
 
 

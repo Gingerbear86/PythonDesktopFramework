@@ -20,11 +20,12 @@ class TestingQuasarDesktopTable(unittest.TestCase):
         cls.automation_elements = AutomationElements()
         cls.automation_excel_handler = ExcelHandler()
         cls.driver = cls.automation_methods.driver
+        cls.file_path = "table_data.xlsx"
+        cls.driver.get('https://quasar.dev/')
 
-    def setUp(self):
-        self.file_path = "table_data.xlsx"
-        self.driver.get('https://quasar.dev/')
-
+    def test_6_home_page(self):
+        """_summary_
+        """
         # Locates and clicks Accept on the Cookies Pop-Up
         web_cookies = self.automation_methods.find_element(
             self.automation_elements.web_cookies_accept_locator
@@ -37,6 +38,9 @@ class TestingQuasarDesktopTable(unittest.TestCase):
         )
         web_docs.click()
 
+    def test_7_docs_page(self):
+        """_summary_
+        """
         # Locates and clicks the Vue Components item
         web_vc = self.automation_methods.find_element(
             self.automation_elements.web_vue_components_locator
@@ -68,7 +72,7 @@ class TestingQuasarDesktopTable(unittest.TestCase):
         )
         web_table_dropdown_10.click()
 
-    def test_1_table_save(self):
+    def test_8_table_save(self):
         """_summary_
         """
         # Save the table data from the Basicusage Table to an XLSX file
@@ -77,17 +81,18 @@ class TestingQuasarDesktopTable(unittest.TestCase):
             self.file_path
         )
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         """_summary_
         """
         # Display a large popup alert with "All Done" message
-        self.automation_methods.driver.execute_script(
+        cls.automation_methods.driver.execute_script(
             "alert('All Done'); "
             "document.querySelector('style').textContent"
             "= 'body { zoom: 5; }';"
         )
-        self.automation_methods.driver.switch_to.alert.accept()
-        self.automation_methods.driver.quit()
+        cls.automation_methods.driver.switch_to.alert.accept()
+        cls.automation_methods.driver.quit()
 
 
 if __name__ == '__main__':

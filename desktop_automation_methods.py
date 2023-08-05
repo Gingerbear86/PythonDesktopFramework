@@ -38,25 +38,6 @@ class DesktopAutomationMethods(CombinedAutomationMethods):
             'Selenium',
             'edge_binary_path'
         )
-<<<<<<< HEAD
-=======
-        window_x_position = config_handler.getint(
-           'Selenium',
-           'window_position_x'
-        )
-        window_y_position = config_handler.getint(
-           'Selenium',
-           'window_position_y'
-        )
-        window_width = config_handler.getint(
-           'Selenium',
-           'window_width'
-        )
-        window_height = config_handler.getint(
-           'Selenium',
-           'window_height'
-        )
->>>>>>> 33c18f71abc1418b29bd91596def5f5dff5747b2
         wait_timeout = config_handler.getint(
             'Selenium',
             'wait_timeout'
@@ -75,8 +56,6 @@ class DesktopAutomationMethods(CombinedAutomationMethods):
                 ),
             options=edge_options
         )
-        self.driver.set_window_position(window_x_position, window_y_position)
-        self.driver.set_window_size(window_width, window_height)
         self.driver.maximize_window()
 
         self.wait = WebDriverWait(self.driver, wait_timeout)
@@ -189,11 +168,6 @@ class WebElementHandler(DesktopAutomationMethods):
         logging.info("Element found, returning state true or false.")
         return bool(element_state.get_attribute('aria-selected'))
 
-
-class ExcelHandler(DesktopAutomationMethods):
-    """
-    ExcelHandler Class
-    """
     # Writes table data to an excel file using Openpyxl
     def record_table_data(self, table_locator, file_path):
         """

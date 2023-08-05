@@ -4,8 +4,7 @@ and capture the data on the table and save it to a file
 """
 import unittest
 from automation_elements import AutomationElements
-from desktop_automation_methods import WebElementHandler
-from desktop_automation_methods import ExcelHandler
+import desktop_automation_methods
 
 
 class TestingQuasarDesktopTable(unittest.TestCase):
@@ -16,9 +15,8 @@ class TestingQuasarDesktopTable(unittest.TestCase):
     """
     @classmethod
     def setUpClass(cls):
-        cls.automation_methods = WebElementHandler()
+        cls.automation_methods = desktop_automation_methods.WebElementHandler()
         cls.automation_elements = AutomationElements()
-        cls.automation_excel_handler = ExcelHandler()
         cls.driver = cls.automation_methods.driver
         cls.file_path = "table_data.xlsx"
         cls.driver.get('https://quasar.dev/')
@@ -76,7 +74,7 @@ class TestingQuasarDesktopTable(unittest.TestCase):
         """_summary_
         """
         # Save the table data from the Basicusage Table to an XLSX file
-        self.automation_excel_handler.record_table_data(
+        self.automation_methods.record_table_data(
             self.automation_elements.web_table_basic_usage_child_tables_locator,
             self.file_path
         )

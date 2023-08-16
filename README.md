@@ -20,8 +20,11 @@ Configuration
 
 The test scripts use configuration settings stored in the config.ini file. Ensure that the file is located in the same directory as the test scripts. Sample configuration settings are provided in the provided config.ini file.
 
-Copy code
+Running Tests
 
+Open a command prompt or terminal.
+Navigate to the directory containing the test scripts.
+Run a specific test script using the following command:
 python test_script_name.py
 Replace test_script_name.py with the name of the test script you want to run.
 

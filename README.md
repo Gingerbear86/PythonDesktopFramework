@@ -1,12 +1,42 @@
 # PythonDesktopFramework
- This is my Python Desktop Automation Framework. I've only been coding a few months and have used GPT to help me learn along the way.
 
- I store and call my configurations from an ini file config.ini
+This repository contains automated test scripts for testing the aria states of Quasar Desktop using Selenium WebDriver and Python. The tests are organized into separate test classes to navigate through the Quasar website, interact with different components, and capture data from a table.
 
- I store my elements in automation_elements
+Prerequisites
 
- I store my methods in both desktop_automation_methods and combined_automation_methods that is shared on my mobile framework also.
+Python 3.x
+Selenium WebDriver
+Microsoft Edge WebDriver (msedgedriver.exe)
+Microsoft Edge browser (msedge.exe)
 
- webquasartables is my test for quasar tables, it navigates to a basic table, expands it, and then collects the data in the table and saves it to a file table_data.xlsx
+Setup
 
-webtabsariastate is my test case for testing aria states of quasar tabs.
+Install Python 3.x on your system.
+Install Selenium WebDriver: pip install selenium.
+Download the appropriate version of the Microsoft Edge WebDriver (msedgedriver.exe) and save it to a location on your system.
+Download and install the Microsoft Edge browser (msedge.exe) if not already installed.
+
+Configuration
+
+The test scripts use configuration settings stored in the config.ini file. Ensure that the file is located in the same directory as the test scripts. Sample configuration settings are provided in the provided config.ini file.
+
+Copy code
+
+python test_script_name.py
+Replace test_script_name.py with the name of the test script you want to run.
+
+Test Script Descriptions
+
+test_aria_state_quasar_desktop.py
+This script contains test methods that navigate through the Quasar website, interact with different components, and verify the aria state of elements. It covers scenarios such as accepting cookies, navigating to the documentation section, and selecting tabs with dropdowns.
+test_capture_table_data.py
+This script contains test methods that navigate to the Quasar Table documentation page, select different options, and capture data from a table. The captured data is saved to an Excel file (table_data.xlsx) for further analysis.
+
+Note
+
+The provided code includes several classes and methods for handling WebDriver operations, element interactions, and configuration management. These classes are designed to be reusable and extensible for various automation scenarios.
+Ensure that you have appropriate permissions and access rights to run the provided test scripts and interact with the Quasar website.
+
+Acknowledgments
+
+The automated test scripts in this repository were created by Jonathan Howard, an aspiring software developer with expertise in Agile Software Development and proficiency in various programming languages.

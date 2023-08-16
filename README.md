@@ -39,4 +39,4 @@ Ensure that you have appropriate permissions and access rights to run the provid
 
 Acknowledgments
 
-The automated test scripts in this repository were created by Jonathan Howard, an aspiring software developer with expertise in Agile Software Development and proficiency in various programming languages.
+The code in this repository were created with a little help from Chat GPT by Jonathan Howard, an aspiring software developer with expertise in Agile Software Development and proficiency in various programming languages.
